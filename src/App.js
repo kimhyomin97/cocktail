@@ -2,12 +2,6 @@
 // import './App.css';
 
 import React, { useState, useEffect } from 'react';
-// import { BrowserRouter as Router, Switch, Route } from 'react-router'
-
-// import BoardList from '@componets/BoardList';
-// import BoardNew from '@components/BoardNew';
-// import BoardContent from '@components/BoardContent';
-// import Footer from '@components/Footer';
 
 import axios from 'axios';
 
@@ -40,21 +34,6 @@ function App() {
     hello
     <h1>{testData}</h1>
     <h1>{good}</h1>
-    {/* <h3>get DB data</h3>
-    <div className = "App">
-      <Router>
-        <div>
-          <Switch>
-            <Route path='/' component = {BorderList} exact />
-            <Route path='/BoardNew' component = {BoardNew} exact />
-            <Route path='/BoardContent' component = {BoardContent} exact />
-          </Switch>
-        </div>
-        <div>
-          <Footer />
-        </div>
-      </Router>
-    </div> */}
     </>
     // <div className="App">
     //   <header className="App-header">
