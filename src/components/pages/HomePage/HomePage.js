@@ -16,7 +16,7 @@ function HomePage() {
         .catch(err => console.log(err))
     }, [])
     
-    console.log(Cocktail)
+    // console.log(Cocktail)
     return (
     <>
         <main>
@@ -32,8 +32,8 @@ function HomePage() {
                             {console.log(list.img)}
                             <div><a href={"/cocktail/" + list.name}><img src={list.image} className={"img"+cnt}/></a></div>
                             <div>{list.name}</div>
-                            <div>{list.hash1 +', '+ list.hash2 +', '+ list.hash3}</div>
-                            <div>{list.good}, {list.bad}</div>
+                            <div>{'# ' + list.hash1 +', '+ '# ' + list.hash2 +', '+ '# ' + list.hash3}</div>
+                            <div>good : {list.good}  bad : {list.bad}</div>
                         </div>
                         )
                     }

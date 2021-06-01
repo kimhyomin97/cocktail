@@ -58,14 +58,48 @@ function DisplayCocktail({ match }) {
   var material_list = material;
   var intro_list = intro;
 
-
+  console.log(Cocktail)
   return (
     <>
+    <main>    
     {Cocktail?.map(list => {
         return(
-            <div>{list.name}</div>
+            <>
+            <div class = "licontent clearfix">
+            <div class = "main-content">
+                <h1 class = "recent-post-title">Cocktail List</h1>
+                <div class = "post">
+                    <a href = "Cocktail_detail.html"><img src = {list.image} alt = "" class = "post-image" /></a>
+                    <div class = "post-preview">
+                    <div class = "post-cockname">{list.name}</div><br/>
+                    <div class = "post-material"> {list.material.split('\\rr').map(text => {
+                        return(
+                            <>
+                            {text}
+                            <br/>
+                            </>
+                        )
+                    })}</div>
+                    {/* <p>{list.intro} */}
+                    {/* </p> */}
+                    <a href = "Cocktail_detail.html" class = "btn get-more">Get More</a>
+                    </div>
+                    {/* <a href = "Cocktail_detail.html"><img src = {list.image} alt = "" class = "post-image" /></a>
+                    <div class = "post-preview">
+                    <div class = "post-cockname">{list.name}</div><br/>
+                    <div class = "post-material"> {list.material}</div>
+                    <p>{list.intro}
+                    </p>
+                    <a href = "Cocktail_detail.html" class = "btn get-more">Get More</a>
+                    </div> */}
+                </div>
+            </div>
+            </div>
+            </>
         )
     })}
+    </main>
+    
     {/* <main>
         
     </main> */}

@@ -4,6 +4,8 @@ const mysql = require('mysql');
 // const bodyParser;
 const cors = require('cors');
 
+const cron = require('node-cron');
+
 const db = mysql.createPool({
     host: "localhost",
     user: "root",
@@ -83,3 +85,11 @@ app.get('/api/homepage', (req, res) => {
         res.send(result);
     })
 })
+
+cron.schedule('00 12 1-31 * *', () => { // 매일 12시에 오늘의 칵테일 좋아요 업데이트
+    console.log('test second');
+    // db 업데이트 부분 코드작성
+})
+
+
+
