@@ -60,7 +60,7 @@ app.post("/api/landing3", (req, res) => {
 })
 
 app.post('/api/search_name', (req, res) => {
-    console.log(req.body.name);
+    // console.log(req.body.name);
     const cocktail_name = req.body.name;
     const sql = `SELECT * FROM cocktail WHERE name = '${cocktail_name}';`;
     db.query(sql, (err, result) => {
@@ -166,5 +166,11 @@ cron.schedule('00 12 1-31 * *', () => { // 매일 12시에 오늘의 칵테일 �
     // db 업데이트 부분 코드작성
 })
 
-
+app.post('/api/comment', (req, res) => {
+    const sql = `select * from comment where cocktail = '${req.body.name}';`;
+    db.query(sql, (err, result) => {
+        res.send(result);
+        console.log(result);
+    })
+})
 

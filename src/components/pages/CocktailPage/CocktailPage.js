@@ -15,7 +15,13 @@ function CocktailPage({match}) {
   const [recipe, setRecipe] = useState();
   const [intro, setIntro] = useState();
   const [img, setImg] = useState();
-  
+
+  const [Comment, setComment] = useState([]);
+
+  const [id, setId] = useState();
+  const [pw, setPw] = useState();
+  const [article, setArticle] = useState();
+
   const cocktail_name = match.params.name;
 
   // setHashtagList("테스트1", "테스트2", "테스트3", "테스트4", "테스트5");
@@ -48,7 +54,7 @@ function CocktailPage({match}) {
 
     axios.post('http://localhost:5000/api/search_name', {name : cocktail_name})
     .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         setName(res?.data[0].name)
         setName_es(res?.data[0].name_es)
         setGood(res?.data[0].good)
@@ -59,16 +65,50 @@ function CocktailPage({match}) {
         setImg(res?.data[0].image)
     })
     })
+    useEffect(()=>{
+        axios.post('http://localhost:5000/api/comment', {name : cocktail_name})
+        .then(res => {
+            // console.log(res.data);
+            setComment(res.data);
+        })
+    },[])
   var material_list = material;
   var intro_list = intro;
+
+  const input_comment = (id, pw, article) => {
+      setId(id);
+      setPw(pw);
+      setArticle(article);
+  }
+console.log(id);
+var test1;
+var test2;
+var test3;
   return (
     <>
     <main>
     <div class = "main-container">
-            {/* <div class ="temp-box box-logo">logo</div>
+            {/* <div class ="temp-box box-logo">
+            logo</div>
             <div class ="temp-box box-title">오늘의 칵테일</div> */}
-            <div class = "temp-box box-comment">댓글창</div>
-            <div class = "temp-box box-comment_input">ID : <br/>PW : <br/>입력창</div>
+            <div class = "temp-box box-comment">
+                {Comment?.map(text => {
+                    return(
+                        <>
+                        <div>{text.name}</div>
+                        <div>{text.article}</div>
+                        <br/>
+                        </>
+                    )
+                })}
+            </div>
+            <div class = "temp-box box-comment_input">
+                ID : <br/>PW : <br/>입력창
+                <input type="text" placeholder="아이디" value={test1}></input>
+                <input type="password" placeholder="비밀번호" value={test2}></input>
+                <input type="text" placeholder="댓글 입력" value={test3}></input>
+                <button onClick={()=>{input_comment(test1, test2, test3)}}>입력</button>
+            </div>
             <div class = "temp-box box-img"><img className="cocktail_img" src={img} /></div>
             <div class = "temp-box box-cocktil_name"><div>{name} ({name_es})</div></div>
             <div class = "temp-box box-info"><div>{intro_list?.split('\\rr').map((text) => {

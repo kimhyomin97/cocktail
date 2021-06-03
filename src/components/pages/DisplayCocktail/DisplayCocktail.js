@@ -31,7 +31,7 @@ function DisplayCocktail({ match }) {
     axios.get('http://localhost:5000/api/get')
       .then(res => {
         // console.log(res)
-        // console.log(res.data)
+        console.log(res.data)
         // console.log(res.data[0])
         // setTestData(res.data[0].cocktail)
         // setGood(res.data[0].good)
