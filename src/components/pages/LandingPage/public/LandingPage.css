@@ -8,12 +8,13 @@
     margin-top: 20px;
 }
 .hash_list{
-    display: inline-flex;
+    /* display: inline-flex;
+    display: flex; */
     font-size: 20px;
 }
 .hash_list_container{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .title_tag{
     font-size:50px;
