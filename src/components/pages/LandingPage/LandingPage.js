@@ -46,15 +46,19 @@ function LandingPage(props) {
   const hash_set = new Set(hash_list);
   const hash_distinct = [...hash_set];
 
+  // const rend_hash = hash_distinct.map((hash) => (
+  //   <div className = "hash_list"><Link to={'/hashtag2/'+hash}># {hash}</Link></div>)
+  // );
   const rend_hash = hash_distinct.map((hash) => (
-    <div className = "hash_list"><Link to={'/hashtag2/'+hash}># {hash}</Link></div>)
+    <Link to={'/hashtag2/'+hash}><div className = "hash-box"># {hash}</div></Link>)
   );
   
   return (
     <>
     <div className = "today_cocktail_title">#오늘의 칵테일</div>
     <div className = "today_cocktail_subtitle">#해시태그를 클릭하세요</div>
-    <div className = "hash_list_container">
+    {/* <div className = "hash_list_container"> */}
+    <div className = "hash-main-container">
       {rend_hash}
     </div>
     <br/>

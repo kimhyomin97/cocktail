@@ -39,7 +39,8 @@ function LandingPage_2({ match }) {
   const set_hash = hashList.map(hash => {
 
     for(var i=1;i<=3;i++){
-      if(hash[`hash${i}`])
+      if(hash[`hash${i}`] == tag1 || hash[`hash${i}`] == tag1);
+      else if(hash[`hash${i}`])
         hash_list.push(hash[`hash${i}`]);
     }
   })
@@ -47,15 +48,16 @@ function LandingPage_2({ match }) {
   const hash_distinct = [...hash_set];
 
   const rend_hash = hash_distinct.map(hash => (
-    <div className = "hash_list"><Link to={'/hashtag3/'+match.params.tag1+','+hash}># {hash}</Link></div>
+    <Link to={'/hashtag3/'+match.params.tag1+','+hash}><div className = "hash-box"># {hash}</div></Link>
   ));
 
   return (
     <>
     <div className = "today_cocktail_title">#오늘의 칵테일</div>
     <div className = "today_cocktail_subtitle">#해시태그를 클릭하세요</div>
-    <div className = "title_tag"># {match.params.tag1}</div>
-    <div className = "hash_list_container">
+    {/* <div className = "title_tag"># {match.params.tag1}</div> */}
+    <div className = "hash-sub-containier"><div className="hash_input"># {match.params.tag1}</div></div>
+    <div className = "hash-main-container">
       {rend_hash}
     </div>
     </>
