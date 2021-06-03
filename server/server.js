@@ -30,19 +30,28 @@ app.listen(PORT, () => {
     console.log(`Server On : http://localhost:${PORT}/`);
 })
 
-app.post("/api/search_tag1", (req, res) => {
-    console.log(req.body.tag1);
-    // const sql = "SELECT * from cocktail where hashtag = "+ req.body.tag1;
-    const sql = "SELECT * FROM cocktail";
+app.get("/api/landing", (req, res) => {
+    const sql = "select hash1, hash2, hash3 from cocktail";
     db.query(sql, (err, result) => {
         res.send(result);
+        console.log(result);
     })
 })
 
-app.post("/api/search_tag2", (req, res) => {
-    console.log(req.body.tag1);
-    console.log(req.body.tag2);
 
+app.post("/api/landing2", (req, res) => {
+    // const sql = "SELECT * from cocktail where hashtag = "+ req.body.tag1;
+    // const sql = "SELECT * FROM cocktail";
+    // console.log(req.body.tag1);
+    const sql = `select hash1, hash2, hash3 from cocktail where hash1 = '${req.body.tag1}' or hash2 = '${req.body.tag1}' or hash3 = '${req.body.tag1}'`
+    db.query(sql, (err, result) => {
+        res.send(result);
+        console.log(result);
+    })
+})
+
+app.post("/api/landing3", (req, res) => {
+    // const sql = `select hash1, hash2, hash3 from cocktail where hash1`
 })
 
 app.post('/api/search_name', (req, res) => {
