@@ -97,7 +97,7 @@ function LandingPage_result({ match }) {
   const bad_bt = () => {
     setBad(bad+1);
     }
-
+// test 지환
   return (
     <>
     <main>
