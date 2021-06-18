@@ -1,5 +1,3 @@
-// import logo from './logo.svg';
-// import './App.css';
 import React, { useState, useEffect } from 'react';
 import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom';
 
@@ -19,12 +17,13 @@ import RecommendPage from './components/pages/RecommendPage/RecommendPage';
 import AboutPage from './components/pages/AboutPage/AboutPage';
 
 function App() {
-  
+  // 메인 웹 서버를 실행하는 코드
+  // 라우터를 통해 각 컴포넌트의 주소값을 설정해주고, header와 footer를 출력해준다
+  // 웹페이지를 제작할 때 가장 기본이 되는 부분
   return (
     <BrowserRouter>
     <HeaderBar />
       <Route exact path="/" component={LandingPage}/>
-      {/* <Route exact path="/hashtag2" component={LandingPage_2}/> */}
       <Route path="/hashtag2/:tag1" component={LandingPage_2}/>
       <Route path="/hashtag3/:tag1" component={LandingPage_3}/>
       <Route exact path="/cocktail/:name" component={CocktailPage}/>
