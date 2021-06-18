@@ -70,7 +70,7 @@ function DisplayCocktail({ match }) {
             <div class = "main-content">
 
                 <div class = "post">
-                    <a href = "Cocktail_detail.html" className="display-img-container"><img src = {list.image} alt = "" class = "post-image" /></a>
+                    <a href = {"/cocktail/" + list.name} className="display-img-container"><img src = {list.image} alt = "" class = "post-image" /></a>
                     <div class = "post-preview">
                     <div class = "post-cockname">{list.name}</div><br/>
                     <div class = "post-material"> {list.material.split('\\rr').map(text => {

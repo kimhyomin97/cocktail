@@ -94,3 +94,7 @@ header .menu-toggle{
 .logo_a{
     text-decoration: none;
 }
+.header_list{
+    z-index: 100;  
+    /* 메뉴 가려지는거 방지하기 위함 */
+}

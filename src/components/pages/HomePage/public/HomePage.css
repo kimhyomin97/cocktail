@@ -11,8 +11,13 @@
     text-align: left;
     font-size: 18px;
     border : 1px solid;
+    border-radius: 10px;
     margin: 7px;
     padding:0;
+    background-color: white;
+}
+.homepage-temp-box img{
+    object-fit:contain;
 }
 .homepage-box-logo{
     grid-column: 1/2;
@@ -40,6 +45,7 @@
     font-weight: 500;
     text-align: center;
     border: none;
+    background-color: #d8dfef;
 }
 
 .homepage-box-rank_title_today{
@@ -49,6 +55,7 @@
     font-weight: 500;
     text-align: center;
     border: none;
+    background-color: #d8dfef;
 }
 
 .homepage-box-timer{
@@ -118,4 +125,14 @@
 .img6{
     width:300px;
     height:150px;
+}
+.rank_title_name{
+    font-size: 28px;
+    font-weight: bold;
+}
+.rank_cocktail_list a{
+    text-decoration: none;
+}
+.rank_info_text{
+    text-align: center;
 }

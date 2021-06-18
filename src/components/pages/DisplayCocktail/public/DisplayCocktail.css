@@ -53,14 +53,18 @@
 .display-img-container{
     /* width: 350px; */
 }
+.display-img-container img{
+    object-fit: contain;
+    width: 400px;
+}
 .licontent .main-content .post .post-preview{
-    widows: 60%;
-    /* width: 600px; */
+    /* widows: 60%; */
+    width: 550px;
     height : 100%;
     /* float : left; */
-    float: right;
-    margin-left: 8px;
-    margin-right: 80px;
+    float: left;
+    margin-left: 20px;
+    /* margin-right: 180px; */
     font-size:15px;
 }
 
@@ -92,7 +96,50 @@
     color:white !important;
     background: rgb(0, 0, 0);
 }
-@media screen and (max-width:1030px){
+@media screen and (max-width: 1200px){
+    .licontent .main-content .post .post-preview{
+        font-size: 10px;
+        width: 200px;
+    }
+    .post-material{
+        font-size : 14px;
+    }
+    .post-cockname{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+}
+@media screen and (max-width: 700px){
+    .licontent .main-content .post .post-preview{
+        font-size: 10px;
+        width: 200px;
+    }
+    .post-material{
+        font-size : 14px;
+    }
+    .post-cockname{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .licontent .main-content .post .post-image{
+        width: 200px;
+    }
+}
+/* @media screen and (max-width:1200px){
+    .licontent .main-content .post .post-preview{
+        height : 100%;
+        float : left;
+        margin-left: 8px;
+        font-size:15px;
+        width: 400px;
+    }
+}
+@media screen and (max-width:700px){
+    .post-cockname{
+        font-size: 24px;
+        font-weight: bold;
+    }
     .licontent .main-content .post .post-image{
         widows: 40%;
         max-width: 260px;
@@ -102,14 +149,12 @@
     }
     .licontent .main-content .post .post-preview{
         widows: 60%;
-        /* width: 600px; */
         height : 100%;
-        /* float : left; */
-        float: right;
+        float : left;
         margin-left: 8px;
         margin-right: 80px;
-        font-size:15px;
-        width: 400px;
+        font-size:10px;
+        width: 250px;
     }
 }
 @media screen and (max-width:770px){
@@ -126,13 +171,11 @@
     }
     .licontent .main-content .post .post-preview{
         widows: 60%;
-        /* width: 600px; */
         height : 100%;
-        /* float : left; */
-        float: right;
+        float : left;
         margin-left: 8px;
         margin-right: 80px;
         font-size:10px;
         width: 250px;
     }
-}
+} */

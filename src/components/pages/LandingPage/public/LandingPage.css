@@ -79,6 +79,9 @@
     grid-row: 7/25;
     /* border:1px solid; */
 }
+.land-box-img img{
+    object-fit: cover;
+}
 .land-box-name{
     grid-column: 4/10;
     grid-row: 7/10;

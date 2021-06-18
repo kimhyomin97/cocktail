@@ -89,6 +89,7 @@ function CocktailPage({match}) {
   const articleChange = ({target: {value}}) => setArticle(value);
   const idChange = ({target: {value}}) => setId(value);
   const pwChange = ({target: {value}}) => setPw(value);
+
   return (
     <>
     <main>
@@ -100,8 +101,7 @@ function CocktailPage({match}) {
                 {Comment?.map(text => {
                     return(
                         <>
-                        <div>{text.name}</div>
-                        <div>{text.article}</div>
+                        <div><span className="comment_name">{text.name}</span> - {text.article}</div>
                         <br/>
                         </>
                     )

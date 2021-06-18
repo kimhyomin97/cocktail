@@ -9,7 +9,7 @@ const cron = require('node-cron');
 const db = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: "apmsetup",
+    password: "1234",
     database: "cocktail_db"
 });
 
@@ -160,6 +160,13 @@ app.get('/api/homepage', (req, res) => {
         res.send(result);
     })
     console.log(sql);
+})
+app.get('/api/homepage_rank', (req, res) => {
+    const sql = "SELECT * from today_hash order by good DESC;";
+    // const sql = "SELECT * from cocktail order by good DESC;";
+    db.query(sql, (err, result) => {
+        res.send(result);
+    })
 })
 
 app.get('/api/recommend-cocktail', (req, res) => {

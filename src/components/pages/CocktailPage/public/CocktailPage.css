@@ -11,10 +11,10 @@ main{
     gap: 5px;
 }
 .temp-box{
-    background: #f8f8f8;
+    background: white;
     text-align: left;
     font-size: 18px;
-    border : 1px solid #19ce60;
+    border : 2px solid black;
     border-radius: 5px;
     margin:0;
     padding: 5px;
@@ -43,10 +43,14 @@ main{
     grid-column: 8/10;
     grid-row: 5/11;
     overflow-y: scroll;
+    font-size:16px;
+}
+.comment_name{
+    font-weight: bold;
 }
 .comment_input_area{
     width:220px;
-    height: 67px;
+    height: 40px;
 }
 .comment_input_button{
     float: right;
@@ -66,8 +70,11 @@ main{
     /* align-self:center; */
     border: none;
     padding: 0;
-    border-radius: 18%;
-    overflow: hidden;
+    /* border-radius: 18%;
+    overflow: hidden; */
+}
+.box-img img{
+    object-fit: cover;
 }
 .box-cocktil_name{
     grid-column: 4/10;
