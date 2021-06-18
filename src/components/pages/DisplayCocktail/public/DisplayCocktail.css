@@ -15,7 +15,7 @@
     border-radius: 5px;
     background: white;
     position: relative ;
-    
+    border-style:inset;
     padding: 5px;
 }
 
