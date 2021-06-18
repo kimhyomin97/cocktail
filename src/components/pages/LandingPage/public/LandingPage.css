@@ -1,11 +1,15 @@
+.land_body{
+    background-color: #d8dfef;
+}
 .today_cocktail_title{
     font-size: 60px;
     text-align: center;
+    margin: 15px;
 }
 .today_cocktail_subtitle{
     font-size: 28px;
     text-align: center;
-    margin-top: 20px;
+    margin: 10px;
 }
 .hash_list{
     /* display: inline-flex;
@@ -94,7 +98,8 @@
 }
 .land-box-decision-text{
     grid-column: 7/10;
-    grid-row: 17/21;
+    grid-row: 18/21;
+    font-size: 20px;
 }
 .land-box-decision-good{
     grid-column: 7/8;
@@ -153,14 +158,16 @@
 .hash-box{
     text-align: center;
     font-size: 20px;
-    border : 1px solid;
+    /* border : 1px solid; */
     border-radius: 18px;
-    margin: 20px;
-    padding: 20px;
-    width: 200px;
+    margin: 16px;
+    padding: 15px;
+    width: 190px;
 }
 .hash-box:hover{
-    background-color:darkturquoise;
+    /* background-color:darkturquoise; */
+    background-color: rgb(118, 152, 238);
+    border: 2px solid rgb(0, 0, 0);
 }
 .hash-main-container a{
     text-decoration: none;

@@ -55,6 +55,7 @@ function LandingPage(props) {
   
   return (
     <>
+    <div className="land_body">
     <div className = "today_cocktail_title">#오늘의 칵테일</div>
     <div className = "today_cocktail_subtitle">#해시태그를 클릭하세요</div>
     {/* <div className = "hash_list_container"> */}
@@ -62,7 +63,7 @@ function LandingPage(props) {
       {rend_hash}
     </div>
     <br/>
-    <div><a>테스트</a></div>
+    </div>
     </>
   );
 }

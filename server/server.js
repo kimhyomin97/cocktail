@@ -9,7 +9,7 @@ const cron = require('node-cron');
 const db = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: "apmsetup",
+    password: "1234",
     database: "cocktail_db"
 });
 
