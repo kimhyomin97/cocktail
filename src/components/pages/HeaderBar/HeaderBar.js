@@ -30,7 +30,6 @@ if(temp[1]=='' || temp[1]=="hashtag2" || temp[1] == "hashtag3"){
                     <li><a href ="/homepage_rank">오늘의 순위</a></li>
                     <li><a href ="/">칵테일 추천</a></li>
                     <li><a href ="/display">칵테일 리스트</a></li>
-
                 </ul>
             </li>
         </ul>

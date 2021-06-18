@@ -169,7 +169,7 @@
     width: 190px;
 }
 .hash-box:hover{
-    /* background-color:darkturquoise; */
+    /* 마우스를 올리면 해당 해시태그의 배경색이 변함 */
     background-color: rgb(118, 152, 238);
     border: 2px solid rgb(0, 0, 0);
 }

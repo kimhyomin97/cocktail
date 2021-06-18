@@ -52,22 +52,24 @@ header ul li ul{
     right:0px;
     width:180px;
     display: none;
-}
+} /* Header의 크기가 66px이기때문에
+66px부터 시작한다 */
 
 header ul li:hover ul{
     display: block;
-}
+} /* 마우스를 올리면 display가 되도록 */
 
 header ul li ul li{
     width:100%;
-}
+} /* 부모 클래스에 대비하여 100%의 너비 */
+
 header ul li ul a{
     padding: 10px;
     background-color: #008489;
     color:white;
     text-align: center;
-
-}
+} /* 마우스가 올라가면 헤더와 같은 색으로
+하여 출력해준다. */
 
 header ul li ul a :hover{
     background-color: #00f7ff;

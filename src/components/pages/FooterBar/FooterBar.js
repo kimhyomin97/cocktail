@@ -14,6 +14,7 @@ function FooterBar(props) {
           <h2>Contact</h2>
           <address>[30019] 세종특별자치시 세종로 고려대학교 세종캠퍼스 과학기술2관 314호<br/>
             <a class="footer__btn" href="mailto:tykimdrea@korea.ac.kr">Email Us</a>
+            {/* button을 만들어 누르면 메일을 보낼 수 있게 해준다. */}
           </address>
         </div>
         
