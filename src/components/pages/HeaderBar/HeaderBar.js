@@ -22,13 +22,15 @@ if(temp[1]=='' || temp[1]=="hashtag2" || temp[1] == "hashtag3"){
         <i class = "fa fa-bars menu-toggle">ssdd</i>
         <ul class = "nav">
             <li><a href="/homepage">Home</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="/about">About Us</a></li>
             <li>
                 <a className = "mouse-margin" href="#">Services</a>
                 <ul>
+                    <li><a href ="/today_cocktail">오늘의 칵테일</a></li>
                     <li><a href ="/homepage_rank">오늘의 순위</a></li>
                     <li><a href ="/">칵테일 추천</a></li>
                     <li><a href ="/display">칵테일 리스트</a></li>
+
                 </ul>
             </li>
         </ul>

@@ -9,7 +9,7 @@ const cron = require('node-cron');
 const db = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: "1234",
+    password: "apmsetup",
     database: "cocktail_db"
 });
 
@@ -160,6 +160,13 @@ app.get('/api/homepage', (req, res) => {
         res.send(result);
     })
     console.log(sql);
+})
+
+app.get('/api/recommend-cocktail', (req, res) => {
+    const sql = "SELECT * from cocktail order by good DESC;";
+    db.query(sql, (err, result) => {
+        res.send(result);
+    })
 })
 
 cron.schedule('00 12 1-31 * *', () => { // 매일 12시에 오늘의 칵테일 좋아요 업데이트

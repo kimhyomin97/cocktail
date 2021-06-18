@@ -132,5 +132,5 @@ function RankPage({match}) {
     </>
   );
 }
-
+/* sadasd */
 export default withRouter(RankPage);
