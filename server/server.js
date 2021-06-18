@@ -133,6 +133,7 @@ app.post('/api/result_create2', (req, res) => {
     db.query(sql2, (err, result) => {
         res.send(result);
     })
+    console.log(req.body.tag2)
 })
 
 app.post('/api/result_create3', (req, res) => {
@@ -201,4 +202,18 @@ app.post('/api/comment_post', (req, res) => {
     }
 })
 
-
+// app.post('/api/keyword', (req, res) => {
+//     // console.log(req.body.key_name);
+//     const sql = `select * from cocktail where cocktail = '${req.body.key_name}'`;
+//     db.query(sql, (err, result) => {
+//         res.send(result);
+//         console.log(result);
+//     })
+//     console.log('hello');
+// })
+app.post("/api/keyword", (req, res) => {
+    const sql = `select * from cocktail where name like '%${req.body.searchname}%'`;
+    db.query(sql, (err, result) => {
+        res.send(result);
+    })
+})

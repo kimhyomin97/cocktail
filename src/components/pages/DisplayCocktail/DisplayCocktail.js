@@ -24,14 +24,16 @@ function DisplayCocktail({ match }) {
   const [intro, setIntro] = useState();
   const [img, setImg] = useState();
   const [hash, setHash] = useState();
-
+  const [keyname, setKeyword] = useState();
   const [Cocktail, setCocktail] = useState([]);
+  const [post, setPost] = useState(0);
+  const [search_result, setResult] = useState([]);
   
   useEffect(() => {
     axios.get('http://localhost:5000/api/get')
       .then(res => {
         // console.log(res)
-        console.log(res.data)
+        // console.log(res.data)
         // console.log(res.data[0])
         // setTestData(res.data[0].cocktail)
         // setGood(res.data[0].good)
@@ -40,7 +42,24 @@ function DisplayCocktail({ match }) {
       // .then(res => setTest(res.data))
       .catch(err => console.log(err))
   },[])
-  console.log(Cocktail);
+
+  useEffect(() => {
+    axios.post('http://localhost:5000/api/keyword', {searchname:keyname})
+      .then(res => {
+        // console.log(res)
+        console.log(res.data)
+        // console.log(res.data[0])
+        // setTestData(res.data[0].cocktail)
+        // setGood(res.data[0].good)
+        // setCocktail(res.data)
+        // setPost()
+        // console.log(post);
+        setResult(res.data);
+      })
+      // .then(res => setTest(res.data))
+      .catch(err => console.log(err))
+  },[post])
+//   console.log(Cocktail);
 //   useEffect(()=>{
 //     axios.post('http://localhost:5000/api/result_good', {name : name, good : good})
 //     .then(res => {
@@ -57,13 +76,20 @@ function DisplayCocktail({ match }) {
   
   var material_list = material;
   var intro_list = intro;
+  const keywordChange = ({target: {value}}) => setKeyword(value);
 
-  console.log(Cocktail)
+  console.log(keyname);
+//   console.log(post);
   return (
     <>
     <main>
-    <h1 class = "recent-post-title">Cocktail List</h1>    
-    {Cocktail?.map(list => {
+    <h1 class = "recent-post-title">Cocktail List</h1>
+    <div className="list_search">
+        <input type="text" onChange={keywordChange}></input>
+        <input type="submit" value="검색" onClick={() => setPost(post+1)}/>
+    </div>
+    {keyname==null ?
+    Cocktail?.map(list => {
         return(
             <>
             <div class = "licontent clearfix">
@@ -83,7 +109,43 @@ function DisplayCocktail({ match }) {
                     })}</div>
                     {/* <p>{list.intro} */}
                     {/* </p> */}
+                    <a href = {"/cocktail/" + list.name} class = "btn get-more">Get More</a>
+                    </div>
+                    {/* <a href = "Cocktail_detail.html"><img src = {list.image} alt = "" class = "post-image" /></a>
+                    <div class = "post-preview">
+                    <div class = "post-cockname">{list.name}</div><br/>
+                    <div class = "post-material"> {list.material}</div>
+                    <p>{list.intro}
+                    </p>
                     <a href = "Cocktail_detail.html" class = "btn get-more">Get More</a>
+                    </div> */}
+                </div>
+            </div>
+            </div>
+            </>
+        )
+    }) :
+    search_result.map(list => {
+        return(
+            <>
+            <div class = "licontent clearfix">
+            <div class = "main-content">
+
+                <div class = "post">
+                    <a href = {"/cocktail/" + list.name} className="display-img-container"><img src = {list.image} alt = "" class = "post-image" /></a>
+                    <div class = "post-preview">
+                    <div class = "post-cockname">{list.name}</div><br/>
+                    <div class = "post-material"> {list.material.split('\\rr').map(text => {
+                        return(
+                            <>
+                            {text}
+                            <br/>
+                            </>
+                        )
+                    })}</div>
+                    {/* <p>{list.intro} */}
+                    {/* </p> */}
+                    <a href = {"/cocktail/" + list.name} class = "btn get-more">Get More</a>
                     </div>
                     {/* <a href = "Cocktail_detail.html"><img src = {list.image} alt = "" class = "post-image" /></a>
                     <div class = "post-preview">

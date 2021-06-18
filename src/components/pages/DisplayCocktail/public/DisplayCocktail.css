@@ -42,7 +42,10 @@
    margin: 0 0 0 92px;
    font-size: 44px;
 }
-
+.list_search{
+    float:right;
+    margin-right: 12%;
+}
 .licontent .main-content .post .post-image{
     widows: 40%;
     max-width: 350px;
