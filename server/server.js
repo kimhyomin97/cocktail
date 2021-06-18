@@ -163,8 +163,10 @@ app.get('/api/homepage', (req, res) => {
 })
 
 cron.schedule('00 12 1-31 * *', () => { // 매일 12시에 오늘의 칵테일 좋아요 업데이트
-    console.log('test second');
-    // db 업데이트 부분 코드작성
+    const sql = "update today_hash set bad = 0, good = 0;"
+    db.query(sql, (err, result) => {
+        res.send(result);
+    })
 })
 
 app.post('/api/comment', (req, res) => {
