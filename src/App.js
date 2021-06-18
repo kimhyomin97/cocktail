@@ -15,6 +15,8 @@ import HomePage_Rank from './components/pages/HomePage/HomePage_Rank';
 import FooterBar from './components/pages/FooterBar/FooterBar';
 import HeaderBar from './components/pages/HeaderBar/HeaderBar';
 import DisplayCocktail from './components/pages/DisplayCocktail/DisplayCocktail';
+import RecommendPage from './components/pages/RecommendPage/RecommendPage';
+import AboutPage from './components/pages/AboutPage/AboutPage';
 
 function App() {
   
@@ -30,6 +32,8 @@ function App() {
       <Route path="/homepage" component={HomePage} />
       <Route path="/homepage_rank" component={HomePage_Rank} />
       <Route path="/display" component={DisplayCocktail} />
+      <Route path="/today_cocktail" component={RecommendPage} />
+      <Route path="/about" component={AboutPage} />
       <FooterBar />
     </BrowserRouter>
   );

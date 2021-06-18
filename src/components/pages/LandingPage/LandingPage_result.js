@@ -55,17 +55,38 @@ function LandingPage_result({ match }) {
   },[])
   useEffect(()=>{
     axios.post('http://localhost:5000/api/result_good', {name : name, good : good})
-    .then(res => {
-        // console.log(res.data)
-    })
+    .then(res => {})
   },[good])
 
   useEffect(()=>{
     axios.post('http://localhost:5000/api/result_bad', {name : name, bad : bad})
-    .then(res => {
-        // console.log(res.data)
-    })
+    .then(res => {})
   },[bad])
+
+  useEffect(()=>{
+    axios.post('http://localhost:5000/api/result_today_good', {tag1 : tagList[0], tag2 : tagList[1], tag3: tagList[2], good : good})
+    .then(res => {})
+  },[good])
+
+  useEffect(()=>{
+    axios.post('http://localhost:5000/api/result_today_bad', {tag1 : tagList[0], tag2 : tagList[1], tag3: tagList[2], bad : bad})
+    .then(res => {})
+  },[bad])
+  
+  useEffect(()=>{
+    axios.post('http://localhost:5000/api/result_create1', {tag1:tagList[0], tag2:tagList[1], tag3:tagList[2]})
+    .then(res => {})
+  },[good])
+
+  useEffect(()=>{
+    axios.post('http://localhost:5000/api/result_create2', {tag1:tagList[0], tag2:tagList[1], tag3:tagList[2]})
+    .then(res => {})
+  },[good])
+
+  useEffect(()=>{
+    axios.post('http://localhost:5000/api/result_create3', {tag1:tagList[0], tag2:tagList[1], tag3:tagList[2]})
+    .then(res => {})
+  },[good])
   
   var material_list = material;
   var intro_list = intro;
@@ -76,7 +97,7 @@ function LandingPage_result({ match }) {
   const bad_bt = () => {
     setBad(bad+1);
     }
-
+// test 지환
   return (
     <>
     <main>
@@ -88,7 +109,7 @@ function LandingPage_result({ match }) {
                     <div class = {"land-temp-box land-box-tag"+cnt}># {text}</div>
                 )
             })}
-            <div class = "land-temp-box land-box-img"><img className="cocktail_img" src={img} /></div>
+            <div class = "land-temp-box land-box-img"><a href={"/cocktail/"+name}><img className="cocktail_img" src={img} /></a></div>
             <div class = "land-temp-box land-box-name"><div>{name} {name_es}</div></div>
             
             <div class = "land-temp-box land-box-info-title">Recipe</div>

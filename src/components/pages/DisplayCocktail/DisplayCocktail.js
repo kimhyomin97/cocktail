@@ -61,15 +61,16 @@ function DisplayCocktail({ match }) {
   console.log(Cocktail)
   return (
     <>
-    <main>    
+    <main>
+    <h1 class = "recent-post-title">Cocktail List</h1>    
     {Cocktail?.map(list => {
         return(
             <>
             <div class = "licontent clearfix">
             <div class = "main-content">
-                <h1 class = "recent-post-title">Cocktail List</h1>
+
                 <div class = "post">
-                    <a href = "Cocktail_detail.html"><img src = {list.image} alt = "" class = "post-image" /></a>
+                    <a href = "Cocktail_detail.html" className="display-img-container"><img src = {list.image} alt = "" class = "post-image" /></a>
                     <div class = "post-preview">
                     <div class = "post-cockname">{list.name}</div><br/>
                     <div class = "post-material"> {list.material.split('\\rr').map(text => {

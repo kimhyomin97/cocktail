@@ -30,19 +30,33 @@ app.listen(PORT, () => {
     console.log(`Server On : http://localhost:${PORT}/`);
 })
 
-app.post("/api/search_tag1", (req, res) => {
-    console.log(req.body.tag1);
-    // const sql = "SELECT * from cocktail where hashtag = "+ req.body.tag1;
-    const sql = "SELECT * FROM cocktail";
+app.get("/api/landing", (req, res) => {
+    const sql = "select hash1, hash2, hash3 from cocktail";
     db.query(sql, (err, result) => {
         res.send(result);
+        console.log(result);
     })
 })
 
-app.post("/api/search_tag2", (req, res) => {
-    console.log(req.body.tag1);
-    console.log(req.body.tag2);
 
+app.post("/api/landing2", (req, res) => {
+    // const sql = "SELECT * from cocktail where hashtag = "+ req.body.tag1;
+    // const sql = "SELECT * FROM cocktail";
+    // console.log(req.body.tag1);
+    const sql = `select hash1, hash2, hash3 from cocktail where hash1 = '${req.body.tag1}' or hash2 = '${req.body.tag1}' or hash3 = '${req.body.tag1}'`
+    db.query(sql, (err, result) => {
+        res.send(result);
+        console.log(result);
+    })
+})
+
+app.post("/api/landing3", (req, res) => {
+    // console.log(req.body.tag2)
+    const sql = `select hash1, hash2, hash3 from cocktail where (hash1 = '${req.body.tag1}' or hash2 = '${req.body.tag1}' or hash3 = '${req.body.tag1}') and (hash1 = '${req.body.tag2}' or hash2 = '${req.body.tag2}' or hash3 = '${req.body.tag2}')`
+    db.query(sql, (err, result) => {
+        res.send(result);
+        console.log(result);
+    })
 })
 
 app.post('/api/search_name', (req, res) => {
@@ -58,8 +72,7 @@ app.post('/api/result', (req, res) => {
     const tag1 = req.body.tag1;
     const tag2 = req.body.tag2;
     const tag3 = req.body.tag3;
-    const sql = `SELECT * FROM cocktail where (hash1='${tag1}' or hash2='${tag2}' or hash3='${tag3}')`;
-    // console.log(sql);
+    const sql = `SELECT * FROM cocktail where (hash1='${tag1}' or hash2='${tag1}' or hash3='${tag1}') and (hash1='${tag2}' or hash2='${tag2}' or hash3='${tag2}') and (hash1='${tag3}' or hash2='${tag3}' or hash3='${tag3}')`;
     db.query(sql, (err, result) => {
         res.send(result);
     })
@@ -67,7 +80,69 @@ app.post('/api/result', (req, res) => {
 
 app.post('/api/result_good', (req, res) => {
     const sql = `UPDATE cocktail SET good = '${req.body.good}' WHERE name = '${req.body.name}';`;
+    console.log(req.body.good)
     db.query(sql, (err, result) => {
+        res.send(result);
+    })
+    // console.log(req.body.tag1)
+
+    // const sql2 = `insert into today_hash (hashtag) select '${req.body.tag1}' from dual where not exists (select hashtag from today_hash where hashtag = '${req.body.tag1}')`;
+    // const sql2 = `insert into today_hash (hashtag)
+	// select '${req.body.tag1}' from dual
+    // where not exists
+    // (select hashtag from today_hash
+	// 	where hashtag = '${req.body.tag1}')`;
+})
+
+app.post('/api/result_today_good', (req, res) => {
+    const sql = `UPDATE today_hash SET good = '${req.body.good}' WHERE (hashtag = '${req.body.tag1}') or (hashtag = '${req.body.tag2}') or (hashtag = '${req.body.tag3}');`;
+    console.log(sql);
+    db.query(sql, (err, result) => {
+        res.send(result);
+        console.log(result);
+    })
+})
+
+app.post('/api/result_today_bad', (req, res) => {
+    const sql = `UPDATE today_hash SET bad = '${req.body.bad}' WHERE (hashtag = '${req.body.tag1}') or (hashtag = '${req.body.tag2}') or (hashtag = '${req.body.tag3}');`;
+    console.log(sql);
+    db.query(sql, (err, result) => {
+        res.send(result);
+        console.log(result);
+    })
+})
+
+app.post('/api/result_create1', (req, res) => {
+    const sql = `insert into today_hash (hashtag)
+	select '${req.body.tag1}' from dual
+    where not exists
+    (select hashtag from today_hash
+		where hashtag = '${req.body.tag1}');`;
+
+    db.query(sql, (err, result) => {
+        res.send(result);
+    })
+})
+
+app.post('/api/result_create2', (req, res) => {
+    const sql2 = `insert into today_hash (hashtag)
+	select '${req.body.tag2}' from dual
+    where not exists
+    (select hashtag from today_hash
+		where hashtag = '${req.body.tag2}');`;
+    db.query(sql2, (err, result) => {
+        res.send(result);
+    })
+})
+
+app.post('/api/result_create3', (req, res) => {
+    const sql3 = `insert into today_hash (hashtag)
+	select '${req.body.tag3}' from dual
+    where not exists
+    (select hashtag from today_hash
+		where hashtag = '${req.body.tag3}');`;
+
+    db.query(sql3, (err, result) => {
         res.send(result);
     })
 })
@@ -80,6 +155,13 @@ app.post('/api/result_bad', (req, res) => {
 })
 
 app.get('/api/homepage', (req, res) => {
+    const sql = "SELECT * from cocktail order by good DESC;";
+    db.query(sql, (err, result) => {
+        res.send(result);
+    })
+})
+
+app.get('/api/recommend-cocktail', (req, res) => {
     const sql = "SELECT * from cocktail order by good DESC;";
     db.query(sql, (err, result) => {
         res.send(result);
