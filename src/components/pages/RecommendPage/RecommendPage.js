@@ -20,8 +20,7 @@ function RecommendPage() {
         <main>
         <div class ="recommend-temp-box recommend-box-rank_title_today">오늘의 칵테일</div>
         <div class = "recommend-sub-container"><div class = "today-hastag">전달받은 칵테일이름</div></div>
-            <div class = "recommend-main-container">
-                {/* <div class = "homepage-temp-box homepage-box-title">오늘의 칵테일</div> */}                
+            <div class = "recommend-main-container">   
                 {Cocktail.map((list, cnt=0) => {
                     cnt++
                     if(cnt<=6){

@@ -5,16 +5,9 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import "./public/LandingPage.css";
 
-function LandingPage_result({ match }) { 
-  const hashList = ["휴양지", "부드러운", "남녀노소", "색감이매력적인", "상큼한"
-                  ,"열대과일", "여름", "감칠맛나는", "휴양지", "적당한알콜"
-                  ,"여름", "식전주", "간단한", "달콤한", "청량감"
-                  ,"쌉쌀한", "알코올이강한", "카페에서", "가벼운", "꿀이들어간",
-                  ,"고급스러운", "묵직한", "최고의칵테일", "다양성의존중"];
+function LandingPage_result({ match }) {     // match와 props를 통해 컴포넌트 사이에 변수를 넘겨받는다
+  var tagList = match.params.tag.split(','); // url의 match를 활용해 넘겨준 태그값을 split해서 저장한다
 
-  var tagList = match.params.tag.split(',');
-
-  const [testData, setTestData] = useState();
   const [name, setName] = useState();
   const [name_es, setName_es] = useState();
   const [good, setGood] = useState();
@@ -27,29 +20,17 @@ function LandingPage_result({ match }) {
 
   
   useEffect(() => {
-    // axios.get('http://localhost:5000/api/get')
-    //   .then(res => {
-    //     console.log(res)
-    //     console.log(res.data)
-    //     console.log(res.data[0])
-    //     setTestData(res.data[0].cocktail)
-    //     setGood(res.data[0].good)
-    //   })
-    //   // .then(res => setTest(res.data))
-    //   .catch(err => console.log(err))
     axios.post('http://localhost:5000/api/result', {tag1 : tagList[0], tag2 : tagList[1], tag3 : tagList[2]})
-    .then(res => {
-        // console.log(res.data[0]);
-        setName(res?.data[0]?.name)
-        setName_es(res?.data[0]?.name_es)
-        setGood(res?.data[0]?.good)
-        setBad(res?.data[0]?.bad)
-        setMaterial(res?.data[0]?.material)
+    .then(res => {                                // 서버측에 태그를 넘겨주고
+        setName(res?.data[0]?.name)               // 해당 태그에 매칭되는 칵테일을 검색해 리턴해줍니다
+        setName_es(res?.data[0]?.name_es)         // 이때 state에 칵테일 정보를 저장하는데
+        setGood(res?.data[0]?.good)               // setState를 사용해 상태정보를 갱신합니다
+        setBad(res?.data[0]?.bad)                 // useEffect를 사용해 state정보에 변화가 있으면
+        setMaterial(res?.data[0]?.material)       // axios로 서버와 통신을 주고받는 방법을 활용했습니다.
         setRecipe(res?.data[0]?.recipe)
-        setIntro(res?.data[0]?.intro)
-        setImg(res?.data[0]?.image)
-        setHash(res.data[0]?.hash1 +','+ res.data[0]?.hash2 +','+res.data[0]?.hash3);
-    
+        setIntro(res?.data[0]?.intro)             // 추천받은 칵테일에 대한 good bad를 저장하기 위해
+        setImg(res?.data[0]?.image)               // today 정보까지 서버에 넘겨주어 DB에 저장해줍니다.
+        setHash(res.data[0]?.hash1 +','+ res.data[0]?.hash2 +','+res.data[0]?.hash3);    
     })
     
   },[])
@@ -89,7 +70,6 @@ function LandingPage_result({ match }) {
   },[good])
   
   var material_list = material;
-  var intro_list = intro;
 
   const good_bt = () => {
       setGood(good+1);
@@ -97,7 +77,7 @@ function LandingPage_result({ match }) {
   const bad_bt = () => {
     setBad(bad+1);
     }
-// test 지환
+
   return (
     <>
     <main>
@@ -128,44 +108,6 @@ function LandingPage_result({ match }) {
            
         </div>
     </main>
-    {/* <div className = "today_cocktail_title">#오늘의 칵테일</div>
-    <div className = "today_cocktail_subtitle">#해시태그를 클릭하세요</div>
-    {tagList.map((text)=> (<span className = "title_tag"># {text} </span>))}
-    <div class = "main-container">
-            <div class ="temp-box box-logo">logo</div>
-            <div class ="temp-box box-title">오늘의 칵테일</div>
-            <div class = "temp-box box-comment">댓글창</div>
-            <div class = "temp-box box-comment_input">ID : <br/>PW : <br/>입력창</div>
-            <div class = "temp-box box-img"><img className="cocktail_img" src={img} /></div>
-            <div class = "temp-box box-cocktil_name"><div>{name}</div><div>{name_es}</div></div>
-            <div class = "temp-box box-info"><div>{intro_list?.split('\\rr').map((text) => {
-                return (
-                    <span>
-                        {text}
-                        <br/>
-                    </span>
-                )
-            })}
-                </div></div>
-            <div class = "temp-box box-detail_title">재료</div>
-            <div class = "temp-box box-detail"><div>{material_list?.split('\\rr').map((text) => {
-                return (
-                    <span>
-                        {text}
-                        <br/>
-                    </span>
-                )
-            })}
-            </div></div>
-            <div class = "temp-box box-recipe">{recipe?.split('\\rr').map((text)=>{
-                return (
-                    <span>
-                        {text}
-                        <br />
-                    </span>
-                )
-            })}</div>
-        </div> */}
     </>
   );
 }

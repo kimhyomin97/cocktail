@@ -24,39 +24,11 @@ function CocktailPage({match}) {
   const [post, setPost] = useState(0);
 
   const cocktail_name = match.params.name;
-
-  // setHashtagList("테스트1", "테스트2", "테스트3", "테스트4", "테스트5");
-  const hashList = ["테스트1", "테스트2", "테스트3", "테스트4", "테스트5"];
   
-  var name_temp;
-
   useEffect(() => {
-    // axios.get('http://localhost:5000/api/get')
-    //   .then(res => {
-    //     // console.log(res)
-    //     // console.log(res.data)
-    //     // console.log(res.data[1])
-    //     // name_temp = res.data[1].name.split('\\rr');
-    //     setTestData(res.data[1].name)
-    //     // setGood(res.data[1].good)
-    //     // setInfo(res.data[1].recipe)
-    //     // setImg(res.data[1].image)
-    //     setName(res.data[1].name)
-    //     setName_es(res.data[1].name_es)
-    //     setGood(res.data[1].good)
-    //     setBad(res.data[1].bad)
-    //     setMaterial(res.data[1].material)
-    //     setRecipe(res.data[1].recipe)
-    //     setIntro(res.data[1].intro)
-    //     setImg(res.data[1].image)
-    //   })
-    //   // .then(res => setTest(res.data))
-    //   .catch(err => console.log(err));
-
     axios.post('http://localhost:5000/api/search_name', {name : cocktail_name})
-    .then(res => {
-        // console.log(res.data)
-        setName(res?.data[0].name)
+    .then(res => {                          // 칵테일 이름을 서버에 전송해서
+        setName(res?.data[0].name)          // 칵테일 정보를 서버로부터 받아옵니다.
         setName_es(res?.data[0].name_es)
         setGood(res?.data[0].good)
         setBad(res?.data[0].bad)
@@ -68,17 +40,13 @@ function CocktailPage({match}) {
     })
     useEffect(()=>{
         axios.post('http://localhost:5000/api/comment', {name : cocktail_name})
-        .then(res => {
-            // console.log(res.data);
+        .then(res => {                      // 댓글을 comment 테이블에서 갖고옵니다.
             setComment(res.data);
         })
     },[])
     useEffect(()=>{
         axios.post('http://localhost:5000/api/comment_post', {name : cocktail_name, id : id, pw : pw, comment_article : article})
         .then(res => {
-            // console.log(res.data);
-            // setComment(res.data);
-            
         })
     },[post])
   var material_list = material;
@@ -94,9 +62,6 @@ function CocktailPage({match}) {
     <>
     <main>
     <div class = "main-container">
-            {/* <div class ="temp-box box-logo">
-            logo</div>
-            <div class ="temp-box box-title">오늘의 칵테일</div> */}
             <div class = "temp-box box-comment">
                 {Comment?.map(text => {
                     return(
@@ -108,12 +73,10 @@ function CocktailPage({match}) {
                 })}
             </div>
             <div class = "temp-box box-comment_input">
-                {/* ID : <br/>PW : <br/>입력창 */}
                 <form>
                     I D : <input type="text" placeholder="아이디" onChange={idChange} autocomplete="nope"></input><br/>
                     Pw : <input type="password" placeholder="비밀번호" onChange={pwChange}></input><br/>                
                     댓글입력 : <textarea className = "comment_input_area" type="text" placeholder="댓글 입력" onChange={articleChange}></textarea><br/>
-                    {/* <input type="submit" onClick={() => setPost(post+1)}>입력</input> */}
                     <input className = "comment_input_button" type="submit" value="입력" onClick={() => setPost(post+1)}/>
                 </form>
             </div>
@@ -129,17 +92,17 @@ function CocktailPage({match}) {
             })}
                 </div></div>
             <div class = "temp-box box-detail_title">재료</div>
-            <div class = "temp-box box-detail"><div>{material_list?.split('\\rr').map((text) => {
-                return (
-                    <span>
+            <div class = "temp-box box-detail"><div>{material_list?.split('\\rr').map((text) => {       
+                return (   // 재료정보를 \\rr문자를 기준으로 개행처리를 해준 다음 출력을 해줍니다.
+                    <span>                         
                         {text}
                         <br/>
                     </span>
                 )
             })}
             </div></div>
-            <div class = "temp-box box-recipe">{recipe?.split('\\rr').map((text)=>{
-                return (
+            <div class = "temp-box box-recipe">{recipe?.split('\\rr').map((text)=>{                     
+                return (   // 레시피정보를 전처리 해주고 class를 통해 스타일을 더해줍니다.
                     <span>
                         {text}
                         <br />
@@ -148,35 +111,6 @@ function CocktailPage({match}) {
             })}</div>
         </div>
         </main>
-    {/* <div className = "today_cocktail_title">#오늘의 칵테일</div>
-    <div className = "today_cocktail_subtitle">#해시태그를 클릭하세요</div>
-    <div className = "hash_list_container">
-    
-      
-    </div>
-    <br/>
-    <img src={img} />
-    <div>{name}</div>
-    <div>{good}</div>
-    <div>{bad}</div>
-    <div>{temp?.split('\\rr').map((text) => {
-        return (
-            <span>
-                {text}
-                <br/>
-            </span>
-        )
-    })}
-    </div>
-    <div>{recipe?.split('\\rr').map((text) => {
-        return (
-            <span>
-                {text}
-                <br />
-            </span>
-        )
-    })}</div>
-    <div>{intro}</div> */}
     </>
   );
 }

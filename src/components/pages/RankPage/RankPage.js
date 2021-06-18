@@ -18,33 +18,11 @@ function RankPage({match}) {
   
   const cocktail_name = match.params.name;
 
-  // setHashtagList("테스트1", "테스트2", "테스트3", "테스트4", "테스트5");
   const hashList = ["테스트1", "테스트2", "테스트3", "테스트4", "테스트5"];
   
   var name_temp;
 
   useEffect(() => {
-    // axios.get('http://localhost:5000/api/get')
-    //   .then(res => {
-    //     // console.log(res)
-    //     // console.log(res.data)
-    //     // console.log(res.data[1])
-    //     // name_temp = res.data[1].name.split('\\rr');
-    //     setTestData(res.data[1].name)
-    //     // setGood(res.data[1].good)
-    //     // setInfo(res.data[1].recipe)
-    //     // setImg(res.data[1].image)
-    //     setName(res.data[1].name)
-    //     setName_es(res.data[1].name_es)
-    //     setGood(res.data[1].good)
-    //     setBad(res.data[1].bad)
-    //     setMaterial(res.data[1].material)
-    //     setRecipe(res.data[1].recipe)
-    //     setIntro(res.data[1].intro)
-    //     setImg(res.data[1].image)
-    //   })
-    //   // .then(res => setTest(res.data))
-    //   .catch(err => console.log(err));
 
     axios.post('http://localhost:5000/api/search_name', {name : cocktail_name})
     .then(res => {
@@ -100,37 +78,7 @@ function RankPage({match}) {
             })}</div>
         </div>
         </main>
-    {/* <div className = "today_cocktail_title">#오늘의 칵테일</div>
-    <div className = "today_cocktail_subtitle">#해시태그를 클릭하세요</div>
-    <div className = "hash_list_container">
-    
-      
-    </div>
-    <br/>
-    <img src={img} />
-    <div>{name}</div>
-    <div>{good}</div>
-    <div>{bad}</div>
-    <div>{temp?.split('\\rr').map((text) => {
-        return (
-            <span>
-                {text}
-                <br/>
-            </span>
-        )
-    })}
-    </div>
-    <div>{recipe?.split('\\rr').map((text) => {
-        return (
-            <span>
-                {text}
-                <br />
-            </span>
-        )
-    })}</div>
-    <div>{intro}</div> */}
     </>
   );
 }
-/* sadasd */
 export default withRouter(RankPage);

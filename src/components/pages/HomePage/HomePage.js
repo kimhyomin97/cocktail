@@ -16,19 +16,16 @@ function HomePage() {
         .catch(err => console.log(err))
     }, [])
     
-    // console.log(Cocktail)
     return (
     <>
         <main>
             <div class = "homepage-main-container">
-                {/* <div class ="homepage-temp-box homepage-box-logo">logo</div>
-                <div class = "homepage-temp-box homepage-box-title">오늘의 칵테일</div> */}
                 <div class ="homepage-temp-box homepage-box-rank_title">칵테일 순위</div>
                 {Cocktail ? Cocktail.map((list, cnt=0) => {
-                    cnt++
-                    if(cnt<=6){
-                        return(
-                        <div class = {"homepage-temp-box homepage-box-rank"+cnt}>
+                    cnt++        // 홈페이지에서 칵테일을 출력하는 코드
+                    if(cnt<=6){  // 서버를 통해 good 순으로 정렬된 배열을 리턴받고
+                        return(  // map함수를 활용해 태그를 출력해준다
+                        <div class = {"homepage-temp-box homepage-box-rank"+cnt}> 
                             {console.log(list.img)}
                             <div><a href={"/cocktail/" + list.name}><img src={list.image} className={"img"+cnt}/></a></div>
                             <div>{list.name}</div>

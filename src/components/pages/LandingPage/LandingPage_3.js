@@ -16,16 +16,6 @@ function LandingPage_3({ match }) {
   const [hashList, setHashList] = useState([[]]);
 
   useEffect(() => {
-    // axios.get('http://localhost:5000/api/get')
-    //   .then(res => {
-    //     console.log(res)
-    //     console.log(res.data)
-    //     console.log(res.data[0])
-    //     setTestData(res.data[0].cocktail)
-    //     setGood(res.data[0].good)
-    //   })
-    //   // .then(res => setTest(res.data))
-    //   .catch(err => console.log(err))
     axios.post('http://localhost:5000/api/landing3', {tag1 : tagList[0], tag2 : tagList[1]})
     .then(res => {
       setHashList(res.data);
