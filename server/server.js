@@ -161,6 +161,13 @@ app.get('/api/homepage', (req, res) => {
     })
 })
 
+app.get('/api/recommend-cocktail', (req, res) => {
+    const sql = "SELECT * from cocktail order by good DESC;";
+    db.query(sql, (err, result) => {
+        res.send(result);
+    })
+})
+
 cron.schedule('00 12 1-31 * *', () => { // 매일 12시에 오늘의 칵테일 좋아요 업데이트
     console.log('test second');
     // db 업데이트 부분 코드작성

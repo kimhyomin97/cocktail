@@ -20,7 +20,7 @@ function FooterBar(props) {
         <ul class="footer__nav">
 
           <li class="nav__item nav__item--extra">
-            <h2 class="nav__title">개발자 소개</h2>
+            <h2 class="nav__title">개발자</h2>
             
             <ul class="nav__ul nav__ul--extra">
               <li>
