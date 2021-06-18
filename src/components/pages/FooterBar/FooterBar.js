@@ -6,8 +6,12 @@ import axios from 'axios';
 import "./public/FooterBar.css";
 
 function FooterBar(props) { 
-  return (
-    <>
+  return (  // 웹사이트 하단에 출력되는 footer 구현코드
+            // 모든 웹페이지에서 출력하기 때문에 컴포넌트로 따로 구현
+            // react를 통해 footer컴포넌트를 App.js에서 출력해주는 방법으로
+            // 페이지 하나하나마다 footer를 작성해줄 수고를 덜어준다
+            // 시맨틱 태그인 footer를 활용
+    <>        
     <footer class="footer">
         <div class="footer__addr">
           <h1 class="footer__logo">오늘의 칵테일</h1>

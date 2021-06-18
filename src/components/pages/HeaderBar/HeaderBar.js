@@ -5,17 +5,16 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import "./public/HeaderBar.css";
 
-function HeaderBar(props) { 
-    const path = props.location.pathname;
-    const temp = path.split('/');
+function HeaderBar(props) {              // Header를 출력하는 컴포넌트를 제작했습니다.
+    const path = props.location.pathname;// 이때 헤더가 출력되지 않는 부분의 path를 지정하여
+    const temp = path.split('/');        // 조건문을 통해 선택적으로 헤더를 출력했습니다.
     console.log(temp);
-// console.log(props.location.pathname);
 if(temp[1]=='' || temp[1]=="hashtag2" || temp[1] == "hashtag3"){
     return (<div></div>);
 }
-  return (
+  return (                               // 시맨틱태그인 header를 활용했습니다.
     <>
-    <header>
+    <header>                             
         <div class = "logo">
             <a className = "logo_a" href="/homepage"><h1 class = "logo-text"><span>오늘의</span> 칵테일</h1></a>
         </div>

@@ -14,25 +14,13 @@ function LandingPage_2({ match }) {
  
   const tag1 = match.params.tag1;
 
-  // console.log(match.path);
   const [hashList, setHashList] = useState([[]]);
 
   useEffect(() => {
-    // axios.get('http://localhost:5000/api/get')
-    //   .then(res => {
-    //     console.log(res)
-    //     console.log(res.data)
-    //     console.log(res.data[0])
-    //     setTestData(res.data[0].cocktail)
-    //     setGood(res.data[0].good)
-    //   })
-    //   // .then(res => setTest(res.data))
-    //   .catch(err => console.log(err))
     axios.post('http://localhost:5000/api/landing2', {tag1 : tag1})
-    .then(res => {
-      // console.log(res.data[0])
-      setHashList(res.data);
-    })
+    .then(res => {            // 선택한 태그와 연관된 태그를 출력하기 위해
+      setHashList(res.data);  // 서버에 데이터를 요청한다
+    })             // 이부분 server.js 에서 sql문이랑 같이 보여주면 좋다
   },[])
 
   const hash_list = [];
@@ -53,14 +41,11 @@ function LandingPage_2({ match }) {
 
   return (
     <>
-    <div className="land_body">
     <div className = "today_cocktail_title">#오늘의 칵테일</div>
     <div className = "today_cocktail_subtitle">#해시태그를 클릭하세요</div>
-    {/* <div className = "title_tag"># {match.params.tag1}</div> */}
     <div className = "hash-sub-containier"><div className="hash_input"># {match.params.tag1}</div></div>
     <div className = "hash-main-container">
       {rend_hash}
-    </div>
     </div>
     </>
   );

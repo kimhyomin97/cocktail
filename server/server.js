@@ -1,12 +1,12 @@
-const express = require('express');
+const express = require('express'); // express 연결
 const app = express();
-const mysql = require('mysql');
+const mysql = require('mysql');     // mysql 연동을 위한 모듈
 // const bodyParser;
-const cors = require('cors');
+const cors = require('cors');       // 교차 출처 리소스 공유
 
 const cron = require('node-cron');
 
-const db = mysql.createPool({
+const db = mysql.createPool({       // 데이터베이스 연동
     host: "localhost",
     user: "root",
     password: "1234",
@@ -17,12 +17,12 @@ app.use(express.json());
 app.use(cors());
 
 // const PORT = process.env.PORT || 5000;
-const PORT = 5000;
+const PORT = 5000;                  // 포트 넘버 5000번 사용
 
-app.get("/api/get", (req, res) => {
+app.get("/api/get", (req, res) => { // HTTP 통신을 사용해 db에 접근
     const sqlQuery = "SELECT * FROM cocktail";
-    db.query(sqlQuery, (err, result) => {
-        res.send(result);
+    db.query(sqlQuery, (err, result) => { // sql문을 전송해서 결과값을 받아온다
+        res.send(result);           // 결과를 프론트단으로 보내준다
     })
 })
 
@@ -40,18 +40,15 @@ app.get("/api/landing", (req, res) => {
 
 
 app.post("/api/landing2", (req, res) => {
-    // const sql = "SELECT * from cocktail where hashtag = "+ req.body.tag1;
-    // const sql = "SELECT * FROM cocktail";
-    // console.log(req.body.tag1);
-    const sql = `select hash1, hash2, hash3 from cocktail where hash1 = '${req.body.tag1}' or hash2 = '${req.body.tag1}' or hash3 = '${req.body.tag1}'`
-    db.query(sql, (err, result) => {
-        res.send(result);
+    const sql = `select hash1, hash2, hash3 from cocktail 
+    where hash1 = '${req.body.tag1}' or hash2 = '${req.body.tag1}' or hash3 = '${req.body.tag1}'`
+    db.query(sql, (err, result) => {    // 이전 페이지에서 선택한 태그가 포함된
+        res.send(result);               // 칵테일들의 태그를 검색한다
         console.log(result);
     })
 })
 
 app.post("/api/landing3", (req, res) => {
-    // console.log(req.body.tag2)
     const sql = `select hash1, hash2, hash3 from cocktail where (hash1 = '${req.body.tag1}' or hash2 = '${req.body.tag1}' or hash3 = '${req.body.tag1}') and (hash1 = '${req.body.tag2}' or hash2 = '${req.body.tag2}' or hash3 = '${req.body.tag2}')`
     db.query(sql, (err, result) => {
         res.send(result);
@@ -60,7 +57,6 @@ app.post("/api/landing3", (req, res) => {
 })
 
 app.post('/api/search_name', (req, res) => {
-    // console.log(req.body.name);
     const cocktail_name = req.body.name;
     const sql = `SELECT * FROM cocktail WHERE name = '${cocktail_name}';`;
     db.query(sql, (err, result) => {
@@ -84,14 +80,6 @@ app.post('/api/result_good', (req, res) => {
     db.query(sql, (err, result) => {
         res.send(result);
     })
-    // console.log(req.body.tag1)
-
-    // const sql2 = `insert into today_hash (hashtag) select '${req.body.tag1}' from dual where not exists (select hashtag from today_hash where hashtag = '${req.body.tag1}')`;
-    // const sql2 = `insert into today_hash (hashtag)
-	// select '${req.body.tag1}' from dual
-    // where not exists
-    // (select hashtag from today_hash
-	// 	where hashtag = '${req.body.tag1}')`;
 })
 
 app.post('/api/result_today_good', (req, res) => {
@@ -157,14 +145,13 @@ app.post('/api/result_bad', (req, res) => {
 
 app.get('/api/homepage', (req, res) => {
     const sql = "SELECT * from cocktail order by good DESC;";
-    db.query(sql, (err, result) => {
-        res.send(result);
+    db.query(sql, (err, result) => { // good 순으로 정렬한 뒤
+        res.send(result);            // 프론트단으로 반환해준다
     })
     console.log(sql);
 })
 app.get('/api/homepage_rank', (req, res) => {
     const sql = "SELECT * from today_hash order by good DESC;";
-    // const sql = "SELECT * from cocktail order by good DESC;";
     db.query(sql, (err, result) => {
         res.send(result);
     })
@@ -188,7 +175,6 @@ app.post('/api/comment', (req, res) => {
     const sql = `select * from comment where cocktail = '${req.body.name}';`;
     db.query(sql, (err, result) => {
         res.send(result);
-        // console.log(result);
     })
 })
 
@@ -202,18 +188,10 @@ app.post('/api/comment_post', (req, res) => {
     }
 })
 
-// app.post('/api/keyword', (req, res) => {
-//     // console.log(req.body.key_name);
-//     const sql = `select * from cocktail where cocktail = '${req.body.key_name}'`;
-//     db.query(sql, (err, result) => {
-//         res.send(result);
-//         console.log(result);
-//     })
-//     console.log('hello');
-// })
-app.post("/api/keyword", (req, res) => {
+app.post("/api/keyword", (req, res) => { // DisplayCocktail페이지 검색 서버코드
     const sql = `select * from cocktail where name like '%${req.body.searchname}%'`;
-    db.query(sql, (err, result) => {
-        res.send(result);
+    db.query(sql, (err, result) => {     // like % 연산자를 활용해서 칵테일 이름으로
+        res.send(result);                // 검색해준 결과를 리턴해준다
     })
 })
+
