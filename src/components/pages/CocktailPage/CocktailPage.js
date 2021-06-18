@@ -21,6 +21,7 @@ function CocktailPage({match}) {
   const [id, setId] = useState();
   const [pw, setPw] = useState();
   const [article, setArticle] = useState();
+  const [post, setPost] = useState(0);
 
   const cocktail_name = match.params.name;
 
@@ -72,18 +73,22 @@ function CocktailPage({match}) {
             setComment(res.data);
         })
     },[])
+    useEffect(()=>{
+        axios.post('http://localhost:5000/api/comment_post', {name : cocktail_name, id : id, pw : pw, comment_article : article})
+        .then(res => {
+            // console.log(res.data);
+            // setComment(res.data);
+            
+        })
+    },[post])
   var material_list = material;
   var intro_list = intro;
 
-  const input_comment = (id, pw, article) => {
-      setId(id);
-      setPw(pw);
-      setArticle(article);
-  }
-console.log(id);
-var test1;
-var test2;
-var test3;
+  console.log(post)
+
+  const articleChange = ({target: {value}}) => setArticle(value);
+  const idChange = ({target: {value}}) => setId(value);
+  const pwChange = ({target: {value}}) => setPw(value);
   return (
     <>
     <main>
@@ -103,11 +108,14 @@ var test3;
                 })}
             </div>
             <div class = "temp-box box-comment_input">
-                ID : <br/>PW : <br/>입력창
-                <input type="text" placeholder="아이디" value={test1}></input>
-                <input type="password" placeholder="비밀번호" value={test2}></input>
-                <input type="text" placeholder="댓글 입력" value={test3}></input>
-                <button onClick={()=>{input_comment(test1, test2, test3)}}>입력</button>
+                {/* ID : <br/>PW : <br/>입력창 */}
+                <form>
+                    I D : <input type="text" placeholder="아이디" onChange={idChange} autocomplete="nope"></input><br/>
+                    Pw : <input type="password" placeholder="비밀번호" onChange={pwChange}></input><br/>                
+                    댓글입력 : <textarea className = "comment_input_area" type="text" placeholder="댓글 입력" onChange={articleChange}></textarea><br/>
+                    {/* <input type="submit" onClick={() => setPost(post+1)}>입력</input> */}
+                    <input className = "comment_input_button" type="submit" value="입력" onClick={() => setPost(post+1)}/>
+                </form>
             </div>
             <div class = "temp-box box-img"><img className="cocktail_img" src={img} /></div>
             <div class = "temp-box box-cocktil_name"><div>{name} ({name_es})</div></div>

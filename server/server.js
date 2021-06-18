@@ -159,6 +159,7 @@ app.get('/api/homepage', (req, res) => {
     db.query(sql, (err, result) => {
         res.send(result);
     })
+    console.log(sql);
 })
 
 cron.schedule('00 12 1-31 * *', () => { // 매일 12시에 오늘의 칵테일 좋아요 업데이트
@@ -170,7 +171,18 @@ app.post('/api/comment', (req, res) => {
     const sql = `select * from comment where cocktail = '${req.body.name}';`;
     db.query(sql, (err, result) => {
         res.send(result);
-        console.log(result);
+        // console.log(result);
     })
 })
+
+app.post('/api/comment_post', (req, res) => {
+    if(req.body.id != null){
+        const sql = `insert into comment (cocktail, name, article, password) values ('${req.body.name}', '${req.body.id}','${req.body.comment_article}', '${req.body.pw}')`
+    
+        db.query(sql, (err, result) => {
+            res.send(result);
+        })
+    }
+})
+
 
