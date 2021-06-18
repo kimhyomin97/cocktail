@@ -49,11 +49,13 @@ function LandingPage_3({ match }) {
 
   return (
     <>
+    <div className="land_body">
     <div className = "today_cocktail_title">#오늘의 칵테일</div>
     <div className = "today_cocktail_subtitle">#해시태그를 클릭하세요</div>
     {tagList.map((text)=> (<span className = "hash_input"># {text} </span>))}
     <div className = "hash-main-container">
       {rend_hash}
+    </div>
     </div>
     </>
   );

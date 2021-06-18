@@ -6,11 +6,16 @@
     color: gray;
 }
 
+.about_page:hover{
+    color:#d8dfef;
+}
+
 .subtitle{
     line-height: 30px;
-    font-size:20px;
+    font-size:25px;
     margin-left: 10%;
     margin-bottom: 1%;
+    font-weight: bold;
 }
 
 .for{
@@ -22,7 +27,7 @@
 .deve{
     margin-left: 13%;
     width : 900px;
-    height :250px;
+    height :260px;
     border : 1px solid black;
     padding: 5px;
     margin-top : 10px;
@@ -31,7 +36,7 @@
 
 .profile{
     width:300px;
-    height: 230px;
+    height: 250px;
     float:left;
 }
 
@@ -41,4 +46,12 @@
     line-height: 20px;
     font-size: 15px;
     float:left;
+}
+
+.name{
+    font-size: 25px;
+}
+
+.dummy{
+    background-color: #d8dfef;
 }
